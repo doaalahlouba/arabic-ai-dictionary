@@ -1,0 +1,13 @@
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 2rem;
+  direction: rtl;
+  text-align: right;
+}
+
+input, button {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
