@@ -31,7 +31,7 @@ export default function AIArabicDictionary() {
     } catch (error) {
       setDefinition({
         original: `الكلمة: ${word}`,
-        meaning: "حدث خطأ أثناء جلب المعنى. تأكد من الاتصال أو المفتاح الصحيح."
+        meaning: "⚠️ حدث خطأ أثناء جلب المعنى. تأكد من الاتصال أو المفتاح الصحيح."
       });
     } finally {
       setLoading(false);
@@ -39,28 +39,29 @@ export default function AIArabicDictionary() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 space-y-4">
-      <h1 className="text-2xl font-bold text-center">المعجم الوسيط الذكي</h1>
-      <input
-        placeholder="أدخل الكلمة هنا..."
-        value={word}
-        onChange={(e) => setWord(e.target.value)}
-        className="text-right w-full p-2 border rounded"
-      />
-      <button onClick={handleSearch} disabled={loading} className="w-full p-2 bg-blue-500 text-white rounded">
-        {loading ? "جارٍ البحث..." : "بحث"}
-      </button>
+    <div className="max-w-2xl mx-auto p-6 space-y-4 text-right font-sans bg-gray-50 min-h-screen">
+      <h1 className="text-3xl font-bold text-center text-blue-800">📘 المعجم الوسيط الذكي</h1>
+      <div className="flex space-x-2 justify-end">
+        <button onClick={handleSearch} disabled={loading} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          {loading ? "جاري البحث..." : "🔍 بحث"}
+        </button>
+        <input
+          type="text"
+          placeholder="أدخل الكلمة..."
+          value={word}
+          onChange={(e) => setWord(e.target.value)}
+          className="border p-2 rounded w-full focus:outline-none focus:border-blue-400"
+        />
+      </div>
 
       {definition && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="space-y-3"
+          className="bg-white p-4 rounded shadow space-y-2"
         >
-          <div className="p-4 border rounded bg-white shadow">
-            <p>{definition.original}</p>
-            <p><strong>النتيجة:</strong><br />{definition.meaning}</p>
-          </div>
+          <p className="text-lg text-gray-800">{definition.original}</p>
+          <p className="text-gray-700 whitespace-pre-line"><strong>النتيجة:</strong> {definition.meaning}</p>
         </motion.div>
       )}
     </div>
